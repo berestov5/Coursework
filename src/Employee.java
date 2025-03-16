@@ -66,9 +66,9 @@ public class Employee {
 
     public String toString(Employee el) {
         return "Сотрудники:" +
-                " Имя - " + name +
-                ", зарплата - " + salary +
-                ", id - " + id;
+                " Имя - " + el.getName() +
+                ", зарплата - " + el.getSalary() +
+                ", id - " + el.getId();
     }
 
 }

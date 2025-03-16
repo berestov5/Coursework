@@ -12,6 +12,7 @@ public class EmployeeBook {
     Employee employee8 = new Employee("Бугаев Батыр Здоровякович", 135.00, 4);
     Employee employee9 = new Employee("Алексеев Андрей Анатольевич", 165.00, 5);
 
+
     public void fillArray() {
         employeeArray[0] = employee1;
         employeeArray[1] = employee2;
@@ -24,41 +25,41 @@ public class EmployeeBook {
     }
 
     public void printEmployeeData() {
-        for (int i = 0; i < employeeArray.length; i++) {
-            if (employeeArray[i] != null) {
-                System.out.println(employeeArray[i]);
+        for (Employee employee : employeeArray) {
+            if (employee != null) {
+                System.out.println(employee);
             }
         }
     }
     public double salaryMonth() {
         double salarySum = 0;
-        for (int i = 0; i < employeeArray.length; i++) {
-            if (employeeArray[i] != null) {
-                salarySum += employeeArray[i].getSalary();
+        for (Employee employee : employeeArray) {
+            if (employee != null) {
+                salarySum += employee.getSalary();
             }
         }
         return salarySum;
     }
 
     public String salaryMin() {
-        double min = Double.MAX_VALUE;
+        double min = employeeArray[0].getSalary();
         String name = "";
-        for (int i = 0; i < employeeArray.length; i++) {
-            if (employeeArray[i] != null && employeeArray[i].getSalary() < min) {
-                min = employeeArray[i].getSalary();
-                name = employeeArray[i].getName();
+        for (Employee employee : employeeArray) {
+            if (employee != null && employee.getSalary() < min) {
+                min = employee.getSalary();
+                name = employee.getName();
             }
         }
         return name;
     }
 
     public String salaryMax() {
-        double max = Double.MIN_VALUE;
+        double max = employeeArray[0].getSalary();
         String name = "";
-        for (int i = 0; i < employeeArray.length; i++) {
-            if (employeeArray[i] != null && employeeArray[i].getSalary() > max) {
-                max = employeeArray[i].getSalary();
-                name = employeeArray[i].getName();
+        for (Employee employee : employeeArray) {
+            if (employee != null && employee.getSalary() > max) {
+                max = employee.getSalary();
+                name = employee.getName();
             }
         }
         return name;
@@ -67,8 +68,8 @@ public class EmployeeBook {
     public double averageSalary() {
         double sumSalary = salaryMonth();
         int namberEmployees = 0;
-        for (int i = 0; i < employeeArray.length; i++) {
-            if (employeeArray[i] != null) {
+        for (Employee employee : employeeArray) {
+            if (employee != null) {
                 namberEmployees++;
             }
         }
@@ -76,40 +77,40 @@ public class EmployeeBook {
     }
 
     public void printEmployeeFIO(){
-        for (int i = 0; i < employeeArray.length; i++) {
-            if (employeeArray[i] != null) {
-                System.out.println(employeeArray[i].getName());
+        for (Employee employee : employeeArray) {
+            if (employee != null) {
+                System.out.println(employee.getName());
             }
         }
     }
 
     public void indexingSalary(double percent) {
-        for (int i = 0; i < employeeArray.length; i++) {
-            if (employeeArray[i] != null) {
-                employeeArray[i].setSalary(employeeArray[i].getSalary() * percent / 100 + employeeArray[i].getSalary());
+        for (Employee employee : employeeArray) {
+            if (employee != null) {
+                employee.setSalary(employee.getSalary() * percent / 100 + employee.getSalary());
             }
         }
     }
 
     public String salaryMinDepartment(int department) {
-        double min = Double.MAX_VALUE;
+        double min = 0;
         String name = "";
-        for (int i = 0; i < employeeArray.length; i++) {
-            if (employeeArray[i] != null && employeeArray[i].getDepartment() == department && employeeArray[i].getSalary() < min) {
-                min = employeeArray[i].getSalary();
-                name = employeeArray[i].getName();
+        for (Employee employee : employeeArray) {
+            if (employee != null && employee.getDepartment() == department && employee.getSalary() < min) {
+                min = employee.getSalary();
+                name = employee.getName();
             }
         }
         return name;
     }
 
     public String salaryMaxDepartment(int department) {
-        double max = Double.MIN_VALUE;
+        double max = 0;
         String name = "";
-        for (int i = 0; i < employeeArray.length; i++) {
-            if (employeeArray[i] != null && employeeArray[i].getDepartment() == department && employeeArray[i].getSalary() > max) {
-                max = employeeArray[i].getSalary();
-                name = employeeArray[i].getName();
+        for (Employee employee : employeeArray) {
+            if (employee != null && employee.getDepartment() == department && employee.getSalary() > max) {
+                max = employee.getSalary();
+                name = employee.getName();
             }
         }
         return name;
@@ -117,9 +118,9 @@ public class EmployeeBook {
 
     public double salaryMonthDepartment(int department) {
         double salarySum = 0;
-        for (int i = 0; i < employeeArray.length; i++) {
-            if (employeeArray[i] != null && employeeArray[i].getDepartment() == department) {
-                salarySum += employeeArray[i].getSalary();
+        for (Employee employee : employeeArray) {
+            if (employee != null && employee.getDepartment() == department) {
+                salarySum += employee.getSalary();
             }
         }
         return salarySum;
@@ -128,8 +129,8 @@ public class EmployeeBook {
     public double averageSalaryDepartment(int department) {
         double sumSalary = salaryMonthDepartment(department);
         int namberEmployees = 0;
-        for (int i = 0; i < employeeArray.length; i++) {
-            if (employeeArray[i] != null && employeeArray[i].getDepartment() == department) {
+        for (Employee employee : employeeArray) {
+            if (employee != null && employee.getDepartment() == department) {
                 namberEmployees++;
             }
         }
@@ -137,33 +138,33 @@ public class EmployeeBook {
     }
 
     public void indexingSalaryDepartment(double percent, int department) {
-        for (int i = 0; i < employeeArray.length; i++) {
-            if (employeeArray[i] != null && employeeArray[i].getDepartment() == department) {
-                employeeArray[i].setSalary(employeeArray[i].getSalary() * percent / 100 + employeeArray[i].getSalary());
+        for (Employee employee : employeeArray) {
+            if (employee != null && employee.getDepartment() == department) {
+                employee.setSalary(employee.getSalary() * percent / 100 + employee.getSalary());
             }
         }
     }
 
     public void printEmployeeDataDepartment(int department) {
-        for (int i = 0; i < employeeArray.length; i++) {
-            if (employeeArray[i] != null && employeeArray[i].getDepartment() == department) {
-                System.out.println(employeeArray[i]);
+        for (Employee employee : employeeArray) {
+            if (employee != null && employee.getDepartment() == department) {
+                System.out.println(employee.toString(employee));
             }
         }
     }
 
     public void lessThanControlNumber(int number) {
-        for (int i = 0; i < employeeArray.length; i++) {
-            if (employeeArray[i] != null && employeeArray[i].getSalary() < number) {
-                System.out.println(employeeArray[i]);
+        for (Employee employee : employeeArray) {
+            if (employee != null && employee.getSalary() < number) {
+                System.out.println(employee);
             }
         }
     }
 
     public void greaterThanControlNumber(int number) {
-        for (int i = 0; i < employeeArray.length; i++) {
-            if (employeeArray[i] != null && employeeArray[i].getSalary() >= number) {
-                System.out.println(employeeArray[i]);
+        for (Employee employee : employeeArray) {
+            if (employee != null && employee.getSalary() >= number) {
+                System.out.println(employee);
             }
         }
     }
@@ -187,9 +188,9 @@ public class EmployeeBook {
     }
 
     public Employee findEmployeeById(int id){
-        for (int i = 0; i < employeeArray.length; i++) {
-            if (employeeArray[i] != null && employeeArray[i].getId() == id) {
-                return employeeArray[i];
+        for (Employee employee : employeeArray) {
+            if (employee != null && employee.getId() == id) {
+                return employee;
             }
         }
         return null;
